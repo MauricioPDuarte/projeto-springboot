@@ -151,23 +151,24 @@
 		<a href="/listapessoas"
 			class="waves-effect waves-light btn right blue lighten-2"><i
 			class="material-icons">sync</i></a>
+			
 		<table class="highlight">
-			<tr>
-				<th></th>
-				<th>#</th>
-				<th>Nome</th>
-				<th>Sobrenome</th>
-				<th>Idade</th>
-				<th></th>
-				<th></th>
-			</tr>
+				<tr>		
+					<th width="100"></th>
+					<th width="200">#</th>
+					<th width="280">Nome</th>
+					<th width="280">Sexo</th>
+					<th width="200">Idade</th>
+					<th></th>
+				</tr>
+				
 			<tr th:each="pessoa : ${pessoas}">
-				<td width="70"><a
+				<td><a
 					th:href="@{/perfilpessoa/{idpessoa}(idpessoa=${pessoa.id})}"
-					style="margin-right: 10px;"><i class="material-icons">arrow_drop_down</i></a></td>
+					style=""><i class="material-icons">arrow_drop_down</i></a></td>
 				<td><span th:text="${pessoa.id}"></span></td>
-				<td><span th:text="${pessoa.nome}"></span></td>
-				<td><span th:text="${pessoa.sobrenome}"></span></td>
+				<td><span th:text="${pessoa.nome + ' ' + pessoa.sobrenome}"></span></td>
+				<td><span th:text="${pessoa.sexo == 'F' ? 'Feminino' : 'Masculino'}"></span></td>
 				<td><span th:text="${pessoa.idade}"></span></td>
 				<td width="100"><a style="margin-right: 15px"
 					th:href="@{/editarpessoa/{idpessoa}(idpessoa=${pessoa.id})}"><i
