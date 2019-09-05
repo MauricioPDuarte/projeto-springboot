@@ -40,19 +40,46 @@
 						class="btn-floating btn-meddium waves-effect waves-light red"
 						style="right: 24px;"><i class="material-icons">add</i></a>
 				</div>
-				<div class="col s5  ">
-					<p>
-						<b>Id:</b> <span th:text="${p.id}"></span>
-					</p>
-					<p>
-						<b>Nome:</b> <span th:text="${p.nome}"></span>
-					</p>
-					<p>
-						<b>Sobrenome:</b> <span th:text="${p.sobrenome}"></span>
-					</p>
-					<p>
-						<b>Idade:</b> <span th:text="${p.idade}"></span>
-					</p>
+				<div class="row">
+					<div class="col s3  ">
+						<p>
+							<b>Id:</b> <span th:text="${p.id}"></span>
+						</p>
+						<p>
+							<b>Nome:</b> <span th:text="${p.nome}"></span>
+						</p>
+						<p>
+							<b>Sobrenome:</b> <span th:text="${p.sobrenome}"></span>
+						</p>
+						<p>
+							<b>Idade:</b> <span th:text="${p.idade}"></span>
+						</p>
+					</div>
+
+					<div class="col s3">
+						<p>
+							<b>Cep:</b> <span th:text="${p.endereco.cep}"></span>
+						</p>
+						<p>
+							<b>Cidade:</b> <span th:text="${p.endereco.localidade}"></span>
+						</p>
+						<p>
+							<b>Estado:</b> <span th:text="${p.endereco.uf}"></span>
+						</p>
+						<p>
+							<b>Rua:</b> <span th:text="${p.endereco.logradouro}"></span>
+						</p>
+						<p>
+							<b>Bairro:</b> <span th:text="${p.endereco.bairro}"></span>
+						</p>
+						<p>
+							<b>Numero:</b> <span th:text="${p.endereco.numero}"></span>
+						</p>
+						<p>
+							<b>Complemento:</b> <span th:text="${p.endereco.complemento}"></span>
+						</p>
+					</div>
+
 				</div>
 			</div>
 
@@ -61,7 +88,7 @@
 			<h6>Cadastro telefone</h6>
 			<br />
 
-			
+
 
 
 			<div class="row">
@@ -72,18 +99,20 @@
 
 						<div class="row">
 							<div class="col s9">
-								<label class="active" for="numero">Tipo:</label> <input th:field="*{tipo}"
-									id="tipo" name="tipo" class="validate">
-									<span style="color:red;" th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"></span>
+								<label class="active" for="numero">Tipo:</label> <input
+									th:field="*{tipo}" id="tipo" name="tipo" class="validate">
+								<span style="color: red;" th:if="${#fields.hasErrors('tipo')}"
+									th:errors="*{tipo}"></span>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col s9">
-								<label class="active" for="numero">Numero:</label> <input th:field="*{numero}"
-									id="numero" name="numero" class="validate">
-									<span style="color:red;" th:if="${#fields.hasErrors('numero')}" th:errors="*{numero}"></span>
+								<label class="active" for="numero">Numero:</label> <input
+									th:field="*{numero}" id="numero" name="numero" class="validate">
+								<span style="color: red;" th:if="${#fields.hasErrors('numero')}"
+									th:errors="*{numero}"></span>
 
-									
+
 
 							</div>
 						</div>

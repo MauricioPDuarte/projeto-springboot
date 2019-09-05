@@ -13,10 +13,11 @@ $(document).ready(function() {
 	    //$("#ibge").val("");
 	    
 	    //Libera os campos bloqueados
-	    $("#rua").attr("disabled", false);
-	    $("#bairro").attr("disabled", false);
-	    $("#cidade").attr("disabled", false);
-	    $("#uf").attr("disabled", false);
+	    //$("#rua").attr("disabled", false);
+	    //$("#bairro").attr("disabled", false);
+	    //$("#cidade").attr("disabled", false);
+	    //$("#uf").attr("disabled", false);
+	   
 	    
 	    //Limpa mensagem de erro
 	    $('#cepInvalido').text('')
@@ -56,10 +57,10 @@ $(document).ready(function() {
 		            //$("#ibge").val(dados.ibge);
 		            
 		            //Bloqueia os campos
-		            $("#rua").attr("disabled", true);
-		    	    $("#bairro").attr("disabled", true);
-		    	    $("#cidade").attr("disabled", true);
-		    	    $("#uf").attr("disabled", true);
+		            //$("#rua").attr("disabled", true);
+		    	    //$("#bairro").attr("disabled", true);
+		    	    //$("#cidade").attr("disabled", true);
+		    	    //$("#uf").attr("disabled", true);
 	            } //end if.
 	           else {
 		            //CEP pesquisado não foi encontrado.
