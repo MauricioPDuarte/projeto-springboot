@@ -91,7 +91,7 @@ public class PessoaController {
 	public ModelAndView pesquisar(@RequestParam("nomepesquisa") String nomepesquisa) {
 		ModelAndView model = new ModelAndView("cadastro/cadastropessoa");
 		model.addObject("pessoas", pessoaRepository.findPessoaByName(nomepesquisa));
-		model.addObject("pessoao", new Pessoa());
+		model.addObject("pessoa", new Pessoa());
 		return model;
 	}
 	
