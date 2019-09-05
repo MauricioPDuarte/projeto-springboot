@@ -13,6 +13,10 @@
 <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css" media="screen,projection" />
 <!--Let browser know website is optimized for mobile-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!--JavaScript at end of body for optimized loading-->
+<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+<script type="text/javascript" src="/jquery/jquery.js"></script>
+<script type="text/javascript" src="/js/viacep/viacep.js"></script>
 </head>
 <body>
 
@@ -60,6 +64,7 @@
 					<label>Cep:</label>
 					<input name="endereco.cep" id="cep" th:field="*{endereco.cep}"/>
 					<span style="color:red;" th:if="${#fields.hasErrors('endereco.cep')}" th:errors="*{endereco.cep}"></span>
+					<span style="color:red;" id="cepInvalido" ></span>
 				</div>
 				<div class="col s5">
 					<label>Rua:</label>
@@ -81,7 +86,7 @@
 				</div>
 				<div class="col s3">
 					<label>Estado:</label>
-					<input name="endereco.uf" id="estado" th:field="*{endereco.uf}"/>
+					<input name="endereco.uf" id="uf" th:field="*{endereco.uf}"/>
 					<span style="color:red;" th:if="${#fields.hasErrors('endereco.uf')}" th:errors="*{endereco.uf}"></span>
 				</div>
 				<div class="col s2">
@@ -152,9 +157,7 @@
 		</table>
 	</div>
 
-	<!--JavaScript at end of body for optimized loading-->
-	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
-	<script type="text/javascript" src="/jquery/jquery.js"></script>
+
 	
 	<script type="text/javascript">
 	
