@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Cadastro Pessoa</title>
+
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css" media="screen,projection" />
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+
+	<nav>
+		<div class="container">
+			<div>
+				<a href="#" class="brand-logo">SpringBoot</a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li><a href="/">Inicio</a></li>
+					<li><a href="/cadastropessoa">Cadastro</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<br />
+
+	<div class="container">
+	
+		<form action="#" th:action="@{/salvarpessoa}" method="post" th:object="${pessoa}"
+			id="formpessoa" th:onsubmit="return validarCampos()">
+			<div class="row">
+				<div class="col s2">
+					<label>Código:</label> <input name="nome" th:field="*{id}"
+						readonly="readonly">
+				</div>
+				<div class="col s5">
+					<label>Nome:</label> <input name="nome" th:field="*{nome}" id="nome">
+					<span style="color:red;" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+					<span style="color:red;" id="erroNome"></span>
+				</div>
+				<div class="col s5">
+					<label>Sobrenome:</label> <input name="sobrenome" id="sobrenome"
+						th:field="*{sobrenome}">
+						<span style="color:red;" th:if="${#fields.hasErrors('sobrenome')}" th:errors="*{sobrenome}"></span>
+						<span style="color:red;" id="erroSobrenome"></span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<label>Idade:</label> <input name="idade" th:field="*{idade}" id="idade">
+					<span style="color:red;" th:if="${#fields.hasErrors('idade')}" th:errors="*{idade}"></span>
+					<span style="color:red;" id="erroIdade"></span>
+				</div>
+
+			</div>
+
+			<button class="btn waves-effect waves-light" type="submit">
+				Salvar <i class="material-icons right">send</i>
+			</button>
+			<a class="btn waves-effect waves-light" href="/cadastropessoa"
+				onclick="document.getElementById('formpessoa').reset();"> Limpar
+				<i class="material-icons right">block</i>
+			</a>
+		</form>
+
+		<br /> <br /> <br /> <br />
+
+		<form action="pesquisarpessoa" method="post">
+			<div class="row">
+				<div class="col s3">
+					<label>Procurar</label> <input name="nomepesquisa"
+						placeholder="Digite a palavra chave">
+				</div>
+				<div class="col s2" style="margin-top: 36px;">
+					<button class="btn-floating btn-small waves-effect waves-light red"
+						type="submit">
+						<i class="material-icons right">find_replace</i>
+					</button>
+				</div>
+			</div>
+		</form>
+
+		<a href="/listapessoas"
+			class="waves-effect waves-light btn right blue lighten-2"><i
+			class="material-icons">sync</i></a>
+		<table class="highlight">
+			<tr>
+				<th></th>
+				<th>#</th>
+				<th>Nome</th>
+				<th>Sobrenome</th>
+				<th>Idade</th>
+				<th></th>
+				<th></th>
+			</tr>
+			<tr th:each="pessoa : ${pessoas}">
+				<td width="70"><a
+					th:href="@{/perfilpessoa/{idpessoa}(idpessoa=${pessoa.id})}"
+					style="margin-right: 10px;"><i class="material-icons">arrow_drop_down</i></a></td>
+				<td><span th:text="${pessoa.id}"></span></td>
+				<td><span th:text="${pessoa.nome}"></span></td>
+				<td><span th:text="${pessoa.sobrenome}"></span></td>
+				<td><span th:text="${pessoa.idade}"></span></td>
+				<td width="100"><a style="margin-right: 15px"
+					th:href="@{/editarpessoa/{idpessoa}(idpessoa=${pessoa.id})}"><i
+						class="small material-icons">edit</i></a> <a
+					th:href="@{/removerpessoa/{idpessoa}(idpessoa=${pessoa.id})}"><i
+						class="small material-icons">delete_forever</i></a></td>
+			</tr>
+		</table>
+	</div>
+
+	<!--JavaScript at end of body for optimized loading-->
+	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+	<script type="text/javascript" src="/jquery/jquery.js"></script>
+	
+	<script type="text/javascript">
+	
+		function validarCampos(){
+			
+			
+			var nome = $('#nome').val();
+			var sobrenome = $('#sobrenome').val();
+			var idade = $('#idade').val();
+			var resposta = false;
+			
+			if(nome == ''){
+				 $('#erroNome').text('Informe o nome');
+				 resposta = true;
+			}else{
+				 $('#erroNome').text('');
+			}
+			
+			if(sobrenome == ''){
+				 $('#erroSobrenome').text('Informe o sobrenome');
+				 resposta = true;
+			}else{
+				$('#erroSobrenome').text('');
+			}
+			
+			if(idade == '' || idade < 18){
+				 $('#erroIdade').text('Idade mínima de 18 anos');
+				 resposta = true;
+			}else{
+				$('#erroIdade').text('');
+			}
+			
+			if(resposta){
+				return false;
+			}
+		}
+	
+	</script>
+</body>
+</html>
