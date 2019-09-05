@@ -10,16 +10,15 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <!--Import materialize.css-->
-<link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css" media="screen,projection" />
 <!--Let browser know website is optimized for mobile-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!--JavaScript at end of body for optimized loading-->
-<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+<link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css" media="screen,projection" />
 <script type="text/javascript" src="/jquery/jquery.js"></script>
+<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
 <script type="text/javascript" src="/js/viacep/viacep.js"></script>
 </head>
 <body>
-
 	<nav>
 		<div class="container">
 			<div>
@@ -34,70 +33,92 @@
 	<br />
 
 	<div class="container">
-	
-		<form action="#" th:action="@{/salvarpessoa}" method="post" th:object="${pessoa}"
-			id="formpessoa" th:onsubmit="return validarCampos()">
+
+		<form action="#" th:action="@{/salvarpessoa}" method="post"
+			th:object="${pessoa}" id="formpessoa"
+			th:onsubmit="return validarCampos()">
 			<div class="row">
 				<div class="col s2">
 					<label>Código:</label> <input name="nome" th:field="*{id}"
 						readonly="readonly">
 				</div>
 				<div class="col s4">
-					<label>Nome:</label> <input name="nome" th:field="*{nome}" id="nome">
-					<span style="color:red;" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
-					<span style="color:red;" id="erroNome"></span>
+					<label>Nome:</label> <input name="nome" th:field="*{nome}"
+						id="nome"> <span style="color: red;"
+						th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span> <span
+						style="color: red;" id="erroNome"></span>
 				</div>
 				<div class="col s3">
 					<label>Sobrenome:</label> <input name="sobrenome" id="sobrenome"
-						th:field="*{sobrenome}">
-						<span style="color:red;" th:if="${#fields.hasErrors('sobrenome')}" th:errors="*{sobrenome}"></span>
-						<span style="color:red;" id="erroSobrenome"></span>
+						th:field="*{sobrenome}"> <span style="color: red;"
+						th:if="${#fields.hasErrors('sobrenome')}" th:errors="*{sobrenome}"></span>
+					<span style="color: red;" id="erroSobrenome"></span>
 				</div>
 				<div class="col s3">
-					<label>Idade:</label> <input name="idade" th:field="*{idade}" id="idade">
-					<span style="color:red;" th:if="${#fields.hasErrors('idade')}" th:errors="*{idade}"></span>
-					<span style="color:red;" id="erroIdade"></span>
+					<label>Idade:</label> <input name="idade" th:field="*{idade}"
+						id="idade"> <span style="color: red;"
+						th:if="${#fields.hasErrors('idade')}" th:errors="*{idade}"></span>
+					<span style="color: red;" id="erroIdade"></span>
 				</div>
 			</div>
 			<div class="row">
+
 				<div class="col s3">
-					<label>Cep:</label>
-					<input name="endereco.cep" id="cep" th:field="*{endereco.cep}"/>
-					<span style="color:red;" th:if="${#fields.hasErrors('endereco.cep')}" th:errors="*{endereco.cep}"></span>
-					<span style="color:red;" id="cepInvalido" ></span>
+					<div class="input-field" style="margin-top:21.9px;">
+						<select th:field="*{sexo}" name="sexo">
+							<option value="M" th:text="Masculino"/>
+							<option value="F" th:text="Feminino"/>
+						</select> 
+						<label>Sexo:</label>
+					</div>
 				</div>
-				<div class="col s5">
-					<label>Rua:</label>
-					<input name="endereco.logradouro" id="rua" th:field="*{endereco.logradouro}"/> 
-					<span style="color:red;" th:if="${#fields.hasErrors('endereco.logradouro')}" th:errors="*{endereco.logradouro}"></span>
+
+				<div class="col s3">
+					<label>Cep:</label> <input name="endereco.cep" id="cep"
+						th:field="*{endereco.cep}" /> <span style="color: red;"
+						th:if="${#fields.hasErrors('endereco.cep')}"
+						th:errors="*{endereco.cep}"></span> <span style="color: red;"
+						id="cepInvalido"></span>
 				</div>
-				<div class="col s4">
-					<label>Bairro:</label>
-					<input name="endereco.bairro" id="bairro" th:field="*{endereco.bairro}"/>
-					<span style="color:red;" th:if="${#fields.hasErrors('endereco.bairro')}" th:errors="*{endereco.bairro}"></span>
+
+				<div class="col s3">
+					<label>Rua:</label> <input name="endereco.logradouro" id="rua"
+						th:field="*{endereco.logradouro}" /> <span style="color: red;"
+						th:if="${#fields.hasErrors('endereco.logradouro')}"
+						th:errors="*{endereco.logradouro}"></span>
+				</div>
+				<div class="col s3">
+					<label>Bairro:</label> <input name="endereco.bairro" id="bairro"
+						th:field="*{endereco.bairro}" /> <span style="color: red;"
+						th:if="${#fields.hasErrors('endereco.bairro')}"
+						th:errors="*{endereco.bairro}"></span>
 				</div>
 
 			</div>
 			<div class="row">
 				<div class="col s5">
-					<label>Cidade:</label>
-					<input name="endereco.localidade" id="cidade" th:field="*{endereco.localidade}"/>
-					<span style="color:red;" th:if="${#fields.hasErrors('endereco.localidade')}" th:errors="*{endereco.localidade}"></span>
+					<label>Cidade:</label> <input name="endereco.localidade"
+						id="cidade" th:field="*{endereco.localidade}" /> <span
+						style="color: red;"
+						th:if="${#fields.hasErrors('endereco.localidade')}"
+						th:errors="*{endereco.localidade}"></span>
 				</div>
 				<div class="col s3">
-					<label>Estado:</label>
-					<input name="endereco.uf" id="uf" th:field="*{endereco.uf}"/>
-					<span style="color:red;" th:if="${#fields.hasErrors('endereco.uf')}" th:errors="*{endereco.uf}"></span>
+					<label>Estado:</label> <input name="endereco.uf" id="uf"
+						th:field="*{endereco.uf}" /> <span style="color: red;"
+						th:if="${#fields.hasErrors('endereco.uf')}"
+						th:errors="*{endereco.uf}"></span>
 				</div>
 				<div class="col s2">
-					<label>Complemento:</label>
-					<input name="endereco.complemento" id="complemento" th:field="*{endereco.complemento}"/>
-					
+					<label>Complemento:</label> <input name="endereco.complemento"
+						id="complemento" th:field="*{endereco.complemento}" />
+
 				</div>
-					<div class="col s2">
-					<label>Numero:</label>
-					<input name="endereco.numero" id="numero" th:field="*{endereco.numero}"/>
-					<span style="color:red;" th:if="${#fields.hasErrors('endereco.numero')}" th:errors="*{endereco.numero}"></span>
+				<div class="col s2">
+					<label>Numero:</label> <input name="endereco.numero" id="numero"
+						th:field="*{endereco.numero}" /> <span style="color: red;"
+						th:if="${#fields.hasErrors('endereco.numero')}"
+						th:errors="*{endereco.numero}"></span>
 				</div>
 			</div>
 
@@ -150,7 +171,8 @@
 				<td><span th:text="${pessoa.idade}"></span></td>
 				<td width="100"><a style="margin-right: 15px"
 					th:href="@{/editarpessoa/{idpessoa}(idpessoa=${pessoa.id})}"><i
-						class="small material-icons">edit</i></a> <a sec:authorize="hasRole('ROLE_ADMIN')"
+						class="small material-icons">edit</i></a> <a
+					sec:authorize="hasRole('ROLE_ADMIN')"
 					th:href="@{/removerpessoa/{idpessoa}(idpessoa=${pessoa.id})}"><i
 						class="small material-icons">delete_forever</i></a></td>
 			</tr>
@@ -158,43 +180,47 @@
 	</div>
 
 
-	
+
 	<script type="text/javascript">
 	
-		function validarCampos(){
-			
-			
+	  $(document).ready(function(){
+		    $('select').formSelect();
+		  });
+	
+	
+	
+		function validarCampos() {
+
 			var nome = $('#nome').val();
 			var sobrenome = $('#sobrenome').val();
 			var idade = $('#idade').val();
 			var resposta = false;
-			
-			if(nome == ''){
-				 $('#erroNome').text('Informe o nome');
-				 resposta = true;
-			}else{
-				 $('#erroNome').text('');
+
+			if (nome == '') {
+				$('#erroNome').text('Informe o nome');
+				resposta = true;
+			} else {
+				$('#erroNome').text('');
 			}
-			
-			if(sobrenome == ''){
-				 $('#erroSobrenome').text('Informe o sobrenome');
-				 resposta = true;
-			}else{
+
+			if (sobrenome == '') {
+				$('#erroSobrenome').text('Informe o sobrenome');
+				resposta = true;
+			} else {
 				$('#erroSobrenome').text('');
 			}
-			
-			if(idade == '' || idade < 18){
-				 $('#erroIdade').text('Idade mínima de 18 anos');
-				 resposta = true;
-			}else{
+
+			if (idade == '' || idade < 18) {
+				$('#erroIdade').text('Idade mínima de 18 anos');
+				resposta = true;
+			} else {
 				$('#erroIdade').text('');
 			}
-			
-			if(resposta){
+
+			if (resposta) {
 				return false;
 			}
 		}
-	
 	</script>
 </body>
 </html>

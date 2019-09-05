@@ -13,6 +13,7 @@ import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Pessoa implements Serializable {
@@ -31,6 +32,9 @@ public class Pessoa implements Serializable {
 
 	@Min(value = 18, message = "Idade mínima de 18 anos")
 	private int idade;
+	
+	@Size(max = 1, min = 1, message = "Informe o sexo")
+	private String sexo;
 
 	@OneToMany(mappedBy = "pessoa", cascade = CascadeType.REMOVE)
 	private List<Telefone> telefones;
@@ -90,5 +94,14 @@ public class Pessoa implements Serializable {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+	
 
 }
