@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
@@ -23,15 +25,19 @@ public class Pessoa implements Serializable {
 
 	@NotEmpty(message = "Informe o nome")
 	private String nome;
-	
+
 	@NotEmpty(message = "Informe o sobrenome")
 	private String sobrenome;
-	
+
 	@Min(value = 18, message = "Idade mínima de 18 anos")
 	private int idade;
 
 	@OneToMany(mappedBy = "pessoa", cascade = CascadeType.REMOVE)
 	private List<Telefone> telefones;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@Valid
+	private Endereco endereco;
 
 	public Pessoa() {
 
@@ -75,6 +81,14 @@ public class Pessoa implements Serializable {
 
 	public void setTelefones(List<Telefone> telefones) {
 		this.telefones = telefones;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 }
