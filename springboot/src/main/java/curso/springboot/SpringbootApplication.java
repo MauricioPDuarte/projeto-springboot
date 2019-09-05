@@ -10,6 +10,7 @@ public class SpringbootApplication {
 		SpringApplication.run(SpringbootApplication.class, args);
 		//Alterado do GitHub
 		//Alterado do eclipse
+		//Alterado do Notebook
 
 	}
 
