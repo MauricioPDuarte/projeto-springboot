@@ -72,6 +72,16 @@
 						<label>Sexo:</label>
 					</div>
 				</div>
+				
+				<div class="col s3">
+					<div class="input-field s12" style="margin-top:21.9px;">
+						<select th:field="*{profissao}" name="profissao" id="profissao">
+							<option th:each="p : ${profissoes}" th:value="${p.id}" th:text="${p.nome}">
+							
+						</select> 
+						<label>Profissão:</label>
+					</div>
+				</div>
 
 				<div class="col s3">
 					<label>Cep:</label> <input name="endereco.cep" id="cep"
@@ -87,23 +97,22 @@
 						th:if="${#fields.hasErrors('endereco.logradouro')}"
 						th:errors="*{endereco.logradouro}"></span>
 				</div>
+			</div>
+			<div class="row">
 				<div class="col s3">
 					<label>Bairro:</label> <input name="endereco.bairro" id="bairro"
 						th:field="*{endereco.bairro}" /> <span style="color: red;"
 						th:if="${#fields.hasErrors('endereco.bairro')}"
 						th:errors="*{endereco.bairro}"></span>
 				</div>
-
-			</div>
-			<div class="row">
-				<div class="col s5">
+				<div class="col s3">
 					<label>Cidade:</label> <input name="endereco.localidade"
 						id="cidade" th:field="*{endereco.localidade}" /> <span
 						style="color: red;"
 						th:if="${#fields.hasErrors('endereco.localidade')}"
 						th:errors="*{endereco.localidade}"></span>
 				</div>
-				<div class="col s3">
+				<div class="col s2">
 					<label>Estado:</label> <input name="endereco.uf" id="uf"
 						th:field="*{endereco.uf}" /> <span style="color: red;"
 						th:if="${#fields.hasErrors('endereco.uf')}"

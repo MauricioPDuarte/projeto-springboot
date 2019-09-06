@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
@@ -32,7 +33,7 @@ public class Pessoa implements Serializable {
 
 	@Min(value = 18, message = "Idade mínima de 18 anos")
 	private int idade;
-	
+
 	@Size(max = 1, min = 1, message = "Informe o sexo")
 	private String sexo;
 
@@ -42,6 +43,9 @@ public class Pessoa implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL)
 	@Valid
 	private Endereco endereco;
+
+	@ManyToOne
+	private Profissao profissao;
 
 	public Pessoa() {
 
@@ -102,6 +106,13 @@ public class Pessoa implements Serializable {
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
-	
+
+	public Profissao getProfissao() {
+		return profissao;
+	}
+
+	public void setProfissao(Profissao profissao) {
+		this.profissao = profissao;
+	}
 
 }

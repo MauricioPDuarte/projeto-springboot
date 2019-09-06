@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import curso.springboot.model.Pessoa;
 import curso.springboot.model.Telefone;
 import curso.springboot.repository.PessoaRepository;
+import curso.springboot.repository.ProfissaoRepository;
 import curso.springboot.repository.TelefoneRepository;
 
 @Controller
@@ -28,13 +29,16 @@ public class PessoaController {
 	
 	@Autowired
 	private TelefoneRepository telefoneRepository;
+	
+	@Autowired
+	private ProfissaoRepository profissaoRepository;
 
 	@RequestMapping(method = RequestMethod.GET, value = "/cadastropessoa")
 	public ModelAndView inicio() {
 		ModelAndView model = new ModelAndView("cadastro/cadastropessoa");
 		model.addObject("pessoa", new Pessoa());
 		model.addObject("pessoas", pessoaRepository.findAll());
-		
+		model.addObject("profissoes", profissaoRepository.findAll());
 		return model;
 	}
 	
@@ -54,7 +58,7 @@ public class PessoaController {
 		Iterable<Pessoa> pessoasIt = pessoaRepository.findAll();
 		model.addObject("pessoa", new Pessoa());
 		model.addObject("pessoas", pessoasIt);
-		
+		model.addObject("profissoes", profissaoRepository.findAll());
 		return model;
 	}
 	
@@ -63,7 +67,8 @@ public class PessoaController {
 		ModelAndView model = new ModelAndView("cadastro/cadastropessoa");
 		Iterable<Pessoa> pessoasIt = pessoaRepository.findAll();
 		model.addObject("pessoas", pessoasIt);
-		model.addObject("pessoa", new Pessoa());
+		model.addObject("pessoa", new Pessoa());;
+		model.addObject("profissoes", profissaoRepository.findAll());
 		return model;
 	}
 	
@@ -73,6 +78,7 @@ public class PessoaController {
 		Optional<Pessoa> pessoa = pessoaRepository.findById(idpessoa);
 		ModelAndView model = new ModelAndView("cadastro/cadastropessoa");
 		pessoa.ifPresent(p -> model.addObject("pessoa", p));
+		model.addObject("profissoes", profissaoRepository.findAll());
 		return model;
 	}
 	
@@ -83,7 +89,7 @@ public class PessoaController {
 		ModelAndView model = new ModelAndView("cadastro/cadastropessoa");	
 		model.addObject("pessoas", pessoaRepository.findAll());
 		model.addObject("pessoa", new Pessoa());
-		
+		model.addObject("profissoes", profissaoRepository.findAll());
 		return model;
 	}
 	
@@ -92,6 +98,7 @@ public class PessoaController {
 		ModelAndView model = new ModelAndView("cadastro/cadastropessoa");
 		model.addObject("pessoas", pessoaRepository.findPessoaByName(nomepesquisa));
 		model.addObject("pessoa", new Pessoa());
+		model.addObject("profissoes", profissaoRepository.findAll());
 		return model;
 	}
 	
